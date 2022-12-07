@@ -1,6 +1,6 @@
 from collections import deque
 
-with open("day6.txt") as f:
+with open("6.txt") as f:
 	line = f.readline()
 	
 	#part A

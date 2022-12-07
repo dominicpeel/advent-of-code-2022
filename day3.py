@@ -1,7 +1,7 @@
 res = 0
 badges = 0
 
-with open("day3.txt", "r") as f:
+with open("3.txt", "r") as f:
 	j = 0
 	for line in f.readlines():
 		line = line[:-1]

@@ -1,5 +1,5 @@
 
-with open("day5.txt") as f:
+with open("5.txt") as f:
 	lines = f.read().splitlines()
 	for i, line in enumerate(lines):
 		if "1" in line:

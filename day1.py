@@ -1,4 +1,4 @@
-f = open("day1.txt", "r")
+f = open("1.txt", "r")
 
 cals = [0]
 currelf = 0

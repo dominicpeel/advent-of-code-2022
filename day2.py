@@ -1,6 +1,6 @@
 score = 0
 
-with open("day2.txt", "r") as f:
+with open("2.txt", "r") as f:
 	
 	for line in f.readlines():
 		elf, player = line[:-1].split(" ")
@@ -29,7 +29,7 @@ print(score)
 # part b
 score = 0
 
-with open("day2.txt", "r") as f:
+with open("2.txt", "r") as f:
 	# rock = 1, paper = 2, scissors = 3
 	for line in f.readlines():
 		elf, outcome = line[:-1].split(" ")

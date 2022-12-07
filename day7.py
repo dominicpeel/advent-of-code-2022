@@ -26,7 +26,7 @@ def find_smallest_dir(files, min_dir, need_to_delete):
 				min_dir = find_smallest_dir(_dir, min_dir, need_to_delete)
 	return min_dir
 
-with open("day7.txt") as f:
+with open("7.txt") as f:
 	files = {"dirs": {}, "files": {}}
 	files["dirs"]["/"] = {"dirs": {}, "files": {}}
 	dir_stack = [files]
