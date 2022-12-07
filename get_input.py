@@ -1,7 +1,6 @@
 import requests
 import sys
 
-# get session from session.txt
 session = open("session.txt").read()
 
 day = sys.argv[1]

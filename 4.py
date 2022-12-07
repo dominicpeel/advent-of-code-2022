@@ -1,6 +1,6 @@
 res = [0,0]
 
-with open("day4.txt", "r") as f:
+with open("4.txt", "r") as f:
 	for line in f.readlines():
 		#split line at "," and "-"
 		first, second = line.split(",")
