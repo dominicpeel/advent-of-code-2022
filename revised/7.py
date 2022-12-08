@@ -15,7 +15,7 @@ for line in lines:
 	elif line[1] == "ls":
 		continue
 	elif line[0] == "dir":
-			continue
+		continue
 	else:
 		file_size = int(line[0])
 		for i in range(1,len(path)+1):
