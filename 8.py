@@ -1,6 +1,7 @@
 data = open("8.txt").read().strip()
 lines = [x for x in data.split("\n")]
 
+
 res = 2*len(lines[0]) + 2*len(lines) - 4
 max_score = 0
 
