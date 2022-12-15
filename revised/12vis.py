@@ -51,7 +51,7 @@ def bfs(start, goal):
 			
 			ax.imshow(rgba)
 			plt.axis('off')
-			plt.savefig("12path.png")
+			plt.savefig("12path.png", bbox_inches='tight', pad_inches=0)
 			return dist[u]
 			
 		for di, dj in dirs:
