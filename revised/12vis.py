@@ -7,9 +7,10 @@ import numpy as np
 data = open("12.txt").read().strip()
 grid = [list(x) for x in data.split("\n")]
 
-x = np.arange(0, len(grid))
-y = np.arange(0, len(grid[0]))
+X = np.arange(0, len(grid))
+Y = np.arange(0, len(grid[0]))
 z = np.zeros((len(grid), len(grid[0])))
+X, Y = np.meshgrid(X, Y)
 
 for i in range(len(grid)):
 	for j in range(len(grid[i])):
@@ -23,6 +24,16 @@ for i in range(len(grid)):
 			grid[i][j] = "z"
 		else:
 			z[i][j] = ord(grid[i][j]) - ord('a')
+
+Z = z.T
+fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+surf = ax.plot_surface(X, Y, Z, cmap=plt.cm.viridis, linewidth=0, antialiased=False)
+ax.set_zlim(0, 25)
+ax.set_xlim(0, len(grid))
+ax.set_ylim(0, len(grid[0]))
+ax.view_init(30, -45)
+ax.set_box_aspect((np.ptp(X), np.ptp(Y), np.ptp(Z)))
+plt.savefig("12_3D.png", bbox_inches='tight', pad_inches=0)
 
 dirs = ((-1,0),(1,0),(0,-1),(0,1))
 
