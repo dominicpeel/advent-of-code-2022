@@ -25,16 +25,6 @@ for i in range(len(grid)):
 		else:
 			z[i][j] = ord(grid[i][j]) - ord('a')
 
-Z = z.T
-fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
-surf = ax.plot_surface(X, Y, Z, cmap=plt.cm.viridis, linewidth=0, antialiased=False)
-ax.set_zlim(0, 25)
-ax.set_xlim(0, len(grid))
-ax.set_ylim(0, len(grid[0]))
-ax.view_init(30, -45)
-ax.set_box_aspect((np.ptp(X), np.ptp(Y), np.ptp(Z)))
-plt.savefig("12_3D.png", bbox_inches='tight', pad_inches=0)
-
 dirs = ((-1,0),(1,0),(0,-1),(0,1))
 
 def bfs(start, goal):
@@ -56,14 +46,16 @@ def bfs(start, goal):
 			norm = plt.Normalize(vmin=0, vmax=25)
 			rgba = cmap(norm(z))
 
+			path = [(*curr, z[curr[0]][curr[1]])]
 			while curr != start:
 				rgba[curr[0]][curr[1]] += np.array([0.1, 0.1, 0.5, 0])
 				curr = prev[curr]
+				path.append((*curr, z[curr[0]][curr[1]]))
 			
 			ax.imshow(rgba)
 			plt.axis('off')
 			plt.savefig("12path.png", bbox_inches='tight', pad_inches=0)
-			return dist[u]
+			return dist[u], path
 			
 		for di, dj in dirs:
 			x, y = u[0]+di, u[1]+dj
@@ -74,6 +66,22 @@ def bfs(start, goal):
 						dist[(x,y)] = update
 						prev[(x,y)] = u
 						Q.append((x,y))
-	return math.inf
+	return math.inf, []
 
-print(bfs(start, goal))
+res, path = bfs(start, goal)
+print(res)
+
+Z = z.T
+fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+
+ax.set_zlim(0, 25)
+ax.set_xlim(0, len(grid))
+ax.set_ylim(0, len(grid[0]))
+ax.view_init(30, -45)
+ax.set_box_aspect((np.ptp(X), np.ptp(Y), np.ptp(Z)))
+
+path = np.array(path)
+surf = ax.plot_surface(X, Y, Z, cmap=plt.cm.viridis, linewidth=0, antialiased=False, zorder=1)
+plt.savefig("12_3D.png", bbox_inches='tight', pad_inches=0)
+ax.plot(path[:,0], path[:,1], path[:,2], color='red', linewidth=1, zorder=4)
+plt.savefig("12_3Dpath.png", bbox_inches='tight', pad_inches=0)
