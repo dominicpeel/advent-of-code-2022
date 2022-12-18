@@ -40,16 +40,17 @@ while i < maxrocks:
 		print(max(maxY)) # part 1
 
 	maxmaxY = max(maxY)
-	maxYrel = (tuple([y-maxmaxY for y in maxY]), i%len(rockfalls), j%len(instructions)) # relative shape
-	if i > 2022 and maxYrel in seen:
-		cycle, height = i - seen[maxYrel][0], maxmaxY - seen[maxYrel][1]
+	maxYrel = [y-maxmaxY for y in maxY]
+	state = (tuple([y-maxmaxY for y in maxY]), i%len(rockfalls), j%len(instructions)) # relative shape
+	if i > 2022 and state in seen:
+		cycle, height = i - seen[state][0], maxmaxY - seen[state][1]
 
 		remaining = maxrocks - i
 		i += cycle * (remaining//cycle)
 		ffheight += height*(remaining//cycle)
 		seen = {}
 
-	seen[maxYrel] = (i, maxmaxY)
+	seen[state] = (i, maxmaxY)
 
 	rock = rockfalls[i%len(rockfalls)]
 	i += 1

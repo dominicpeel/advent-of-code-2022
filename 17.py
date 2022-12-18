@@ -1,3 +1,8 @@
+"""   --------Part 1---------   --------Part 2---------
+Day       Time    Rank  Score       Time    Rank  Score
+ 17   00:54:55    1166      0   04:59:59    2796      0
+"""
+
 data = open("17.txt").read().strip()
 instructions = [1 if x==">" else -1 for x in data]
 # print(instructions)
